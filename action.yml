@@ -1,4 +1,4 @@
-name: 'Markdown Lint Action'
+name: 'MarkdownLint mdl Action'
 author: 'Jason Field'
 description: 'Run mdl on your markdown files with ease'
 runs:
