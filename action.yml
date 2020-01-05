@@ -1,0 +1,9 @@
+name: 'Markdown Lint Action'
+author: 'Jason Field'
+description: 'Run mdl on your markdown files with ease'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'tool'
+  color: 'red'
