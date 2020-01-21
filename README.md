@@ -4,8 +4,13 @@
 
 A Github Action to run mdl on your files
 
-## Usage
+## Outputs
 
+### `output`
+
+The output from `mdl`
+
+## Usage
 ```yaml
 name: markdownlint
 

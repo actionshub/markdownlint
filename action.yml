@@ -1,6 +1,9 @@
 name: 'MarkdownLint mdl Action'
 author: 'Jason Field'
 description: 'Run mdl on your markdown files with ease'
+outputs:
+  output: # id of output
+    description: 'stdout from mdl'
 runs:
   using: 'docker'
   image: 'Dockerfile'
