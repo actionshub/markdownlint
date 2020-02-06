@@ -4,8 +4,19 @@
 
 A Github Action to run mdl on your files
 
-## Usage
+## Inputs
 
+### `path`
+
+Path to scan for markdown files within the directory (and nested directories) `mdl`
+
+## Outputs
+
+### `output`
+
+The output from `mdl`
+
+## Usage
 ```yaml
 name: markdownlint
 
