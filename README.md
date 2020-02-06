@@ -4,6 +4,12 @@
 
 A Github Action to run mdl on your files
 
+## Inputs
+
+### `path`
+
+Path to scan for markdown files within the directory (and nested directories) `mdl`
+
 ## Outputs
 
 ### `output`

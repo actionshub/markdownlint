@@ -1,6 +1,11 @@
 name: 'MarkdownLint mdl Action'
 author: 'Jason Field'
 description: 'Run mdl on your markdown files with ease'
+inputs:
+  path:
+    description: 'Path to scan for markdown files within the directory (and nested directories)'
+    required: false
+    default: './'
 outputs:
   output: # id of output
     description: 'stdout from mdl'
