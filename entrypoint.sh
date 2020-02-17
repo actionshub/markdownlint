@@ -11,6 +11,4 @@ output="${output//$'\n'/'%0A'}"
 output="${output//$'\r'/'%0D'}" 
 echo "::set-output name=output::$output"
 
-if [[ $exit_code != 0 ]]; then
-    exit $exit_code
-fi
+exit $exit_code
