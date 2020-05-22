@@ -10,6 +10,10 @@ A Github Action to run mdl on your files
 
 Path to scan for markdown files within the directory (and nested directories) `mdl`
 
+### `filesToIgnoreRegex`
+
+A regex of files you do not want scanned, note: cannot be used with `path` input
+
 ## Outputs
 
 ### `output`
@@ -17,6 +21,7 @@ Path to scan for markdown files within the directory (and nested directories) `m
 The output from `mdl`
 
 ## Usage
+
 ```yaml
 name: markdownlint
 
