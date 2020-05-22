@@ -4,7 +4,8 @@ mkdir ._actionshub_problem-matchers
 cp /markdownlint.json ._actionshub_problem-matchers/markdownlint.json
 echo "##[add-matcher]._actionshub_problem-matchers/markdownlint.json"
 
-if [ $INPUT_FILESTOIGNOREREGEX ]; then
+# in this context a blank string is an acceptable not set
+if [ -n "$INPUT_FILESTOIGNOREREGEX" ]; then
   # mdl does not currently support an exclude list so we use this to have that feature
   output=$(find * -not -regex "$INPUT_FILESTOIGNOREREGEX" | grep -i ".md" | sed "s/^/'/;s/$/'/" | tr '\n' ' '  | xargs mdl)
 else
