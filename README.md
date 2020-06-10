@@ -38,3 +38,10 @@ jobs:
     - name: Run mdl
       uses: actionshub/markdownlint@master
 ```
+
+## Configuration
+
+`markdownlint` can use a config file called `.mdlrc` this can be found in the [documentation](https://github.com/markdownlint/markdownlint/blob/master/docs/configuration.md)
+
+It may also be worth looking into a [markdown link checker](https://github.com/gaurav-nelson/github-action-markdown-link-check)
+
