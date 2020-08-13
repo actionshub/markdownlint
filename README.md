@@ -43,5 +43,31 @@ jobs:
 
 `markdownlint` can use a config file called `.mdlrc` this can be found in the [documentation](https://github.com/markdownlint/markdownlint/blob/master/docs/configuration.md)
 
-It may also be worth looking into a [markdown link checker](https://github.com/gaurav-nelson/github-action-markdown-link-check)
+For more complex configuration, you may wish to use a Ruby style file.
+In this case, your `.mdlrc` file should contain a link to the style file:
 
+```sh
+style '.mdl.rb'
+```
+
+which can contain arbitrary Ruby code:
+
+```rb
+# Enable all rules by default
+all
+
+# Extend line length, since each sentence should be on a separate line.
+rule 'MD013', :line_length => 99999
+
+# Allow in-line HTML
+exclude_rule 'MD033'
+
+# Nested lists should be indented with four spaces.
+rule 'MD007', :indent => 4
+```
+
+More information can be found in the [mdl documentation](https://github.com/markdownlint/markdownlint/blob/master/docs/creating_styles.md).
+
+## Markdown link checker
+
+It may also be worth looking into a [markdown link checker](https://github.com/gaurav-nelson/github-action-markdown-link-check)
