@@ -34,9 +34,9 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@master
+      uses: actions/checkout@main
     - name: Run mdl
-      uses: actionshub/markdownlint@master
+      uses: actionshub/markdownlint@main
 ```
 
 ## Configuration
