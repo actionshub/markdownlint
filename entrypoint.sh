@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo "::warning ::Github Action: actionshub/markdownlint has migrated to the main branch as default, the master branch will be removed"
 mkdir ._actionshub_problem-matchers
 cp /markdownlint.json ._actionshub_problem-matchers/markdownlint.json
 echo "##[add-matcher]._actionshub_problem-matchers/markdownlint.json"
