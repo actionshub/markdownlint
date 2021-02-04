@@ -7,7 +7,7 @@ echo "##[add-matcher]._actionshub_problem-matchers/markdownlint.json"
 # in this context a blank string is an acceptable not set
 if [ -n "$INPUT_FILESTOIGNOREREGEX" ]; then
   # mdl does not currently support an exclude list so we use this to have that feature
-  output=$(find * -f | grep -v -E "$INPUT_FILESTOIGNOREREGEX" | grep -i ".md" | sed "s/^/'/;s/$/'/" | tr '\n' ' '  | xargs mdl)
+  output=$(find * -type f | grep -v -E "$INPUT_FILESTOIGNOREREGEX" | grep -i ".md" | sed "s/^/'/;s/$/'/" | tr '\n' ' '  | xargs mdl)
 else
   # use input path
   output=$(mdl $INPUT_PATH)
