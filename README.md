@@ -36,7 +36,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@master
     - name: Run mdl
-      uses: actionshub/markdownlint@master
+      uses: actionshub/markdownlint@main
 ```
 
 ## Configuration
