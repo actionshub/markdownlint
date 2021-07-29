@@ -34,9 +34,28 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
     - name: Run mdl
       uses: actionshub/markdownlint@main
+```
+
+### With Ignore files
+
+```yaml
+name: markdownlint
+
+on: [push, pull_request]
+
+jobs:
+  mdl:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Run Markdown Lint
+        uses: actionshub/markdownlint@main
+        with:
+          filesToIgnoreRegex: "node_modules\\/.*"
 ```
 
 ## Configuration
