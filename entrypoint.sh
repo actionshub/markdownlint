@@ -16,10 +16,10 @@ exit_code=$?
 
 echo "$output"
 
-# See https://github.community/t5/GitHub-Actions/set-output-Truncates-Multiline-Strings/td-p/37870
+# See https://github.com/community/community/discussions/26288
 output="${output//'%'/'%25'}"
 output="${output//$'\n'/'%0A'}"
 output="${output//$'\r'/'%0D'}"
-echo "::set-output name=output::$output"
+echo "output=$output" >> $GITHUB_OUTPUT
 
 exit $exit_code
