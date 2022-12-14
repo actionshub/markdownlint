@@ -10,7 +10,7 @@ if [ -n "$INPUT_FILESTOIGNOREREGEX" ]; then
   output=$(find * -type f | grep -v -E "$INPUT_FILESTOIGNOREREGEX" | grep -i "\.md" | sed "s/^/'/;s/$/'/" | tr '\n' ' '  | xargs mdl)
 else
   # use input path
-  output=$(mdl $INPUT_PATH)
+  output=$(mdl "$INPUT_PATH")
 fi
 exit_code=$?
 
