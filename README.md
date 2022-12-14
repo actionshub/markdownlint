@@ -29,9 +29,7 @@ on: [push, pull_request]
 
 jobs:
   delivery:
-
     runs-on: ubuntu-latest
-
     steps:
     - name: Check out code
       uses: actions/checkout@v2

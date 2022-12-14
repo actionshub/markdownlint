@@ -1,5 +1,6 @@
-FROM ruby
+FROM ruby:3.1.3-slim-bullseye
+
 RUN gem install mdl
-COPY . .
-RUN chmod +x /entrypoint.sh
+COPY --chmod=+x entrypoint.sh /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]

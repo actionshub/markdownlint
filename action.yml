@@ -14,4 +14,4 @@ outputs:
     description: 'stdout from mdl'
 runs:
   using: 'docker'
-  image: 'Dockerfile'
+  image: docker://ghcr.io/actionshub/markdownlint:2.1.0
