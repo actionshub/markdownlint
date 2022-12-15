@@ -1,17 +1,17 @@
-name: 'MarkdownLint mdl Action'
-author: 'Jason Field'
-description: 'Run mdl on your markdown files with ease'
+name: "MarkdownLint mdl Action"
+author: "Jason Field"
+description: "Run mdl on your markdown files with ease"
 inputs:
   path:
-    description: 'Path to scan for markdown files within the directory (and nested directories), note: cannot be used with filesToIgnore input'
+    description: "Path to scan for markdown files within the directory (and nested directories), note: cannot be used with filesToIgnore input"
     required: false
-    default: './'
+    default: "./"
   filesToIgnoreRegex:
-    description: 'A regex of files you do not want scanned, note: cannot be used with path input'
+    description: "A regex of files you do not want scanned, note: cannot be used with path input"
     required: false
 outputs:
   output: # id of output
-    description: 'stdout from mdl'
+    description: "stdout from mdl"
 runs:
-  using: 'docker'
-  image: docker://ghcr.io/actionshub/markdownlint:2.1.0
+  using: "docker"
+  image: docker://ghcr.io/actionshub/markdownlint:v2.1.0
