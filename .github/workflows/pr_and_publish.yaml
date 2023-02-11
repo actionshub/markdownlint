@@ -1,19 +1,39 @@
 ---
 name: Build & Publish container
 "on":
+  pull_request:
   push:
     branches: [main]
 
 jobs:
-  publish:
+  build_and_publish:
+    name: Build & Publish to GitHub Container Registry
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
     steps:
-      - name: Bump version and push tag
-        id: tag_version
+      - name: Code checkout
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Dry Run Bump version and push tag
+        id: dry_run_tag_version
+        if: github.event_name == 'pull_request'
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: false
+          dry_run: true
+
+      - name: Bump version and push tag
+        id: tag_version
+        if: github.ref == 'refs/heads/main'
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: false
 
       - name: Docker metadata
         id: meta
@@ -36,7 +56,19 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@main
+      - name: Update actions.yml
+        if: github.event_name == 'pull_request'
+        uses: mikefarah/yq@v4.30.8
+        with:
+          cmd: yq e -i '.runs.image = "docker://ghcr.io/${{ github.repository }}:${{ steps.dry_run_tag_version.outputs.new_tag }}"' action.yml
+
+      - name: Commit Changes to actions.yml
+        if: github.event_name == 'pull_request'
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: "Update actions.yml"
+          add: "action.yml"
+          default_author: github_actions
 
       - name: Build and push
         uses: docker/build-push-action@v4
@@ -44,15 +76,13 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: |
-            ghcr.io/${{ github.repository }}:${{ steps.tag_version.outputs.new_tag }}
-            ghcr.io/${{ github.repository }}:latest
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Create a GitHub release
+        if: github.ref == 'refs/heads/main'
         uses: ncipollo/release-action@v1.12.0
         with:
           tag: ${{ steps.tag_version.outputs.new_tag }}
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
-          generateReleaseNotes: true
