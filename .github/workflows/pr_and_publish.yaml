@@ -66,7 +66,7 @@ jobs:
         if: github.event_name == 'pull_request'
         uses: EndBug/add-and-commit@v9
         with:
-          message: "Update actions.yml"
+          message: "Update actions.yml to ${{ steps.dry_run_tag_version.outputs.new_tag }}"
           add: "action.yml"
           default_author: github_actions
 
@@ -78,7 +78,7 @@ jobs:
           push: true
           tags: |
             ${{ steps.meta.outputs.tags }}
-            ${{ steps.tag_version.outputs.new_tag }}
+            ghcr.io/${{ github.repository }}:${{ steps.tag_version.outputs.new_tag }}
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Create a GitHub release
