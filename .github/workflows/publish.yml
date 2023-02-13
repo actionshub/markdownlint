@@ -1,0 +1,9 @@
+---
+name: Build & Publish container
+"on":
+  push:
+    branches: [main]
+
+jobs:
+  publish:
+    uses: actionshub/reusable-workflows/.github/workflows/publish.yaml@cce19fb345836ccd29168d876a8a8eca454fb27a
