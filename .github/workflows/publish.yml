@@ -6,4 +6,4 @@ name: Build & Publish container
 
 jobs:
   publish:
-    uses: actionshub/reusable-workflows/.github/workflows/publish.yaml@cce19fb345836ccd29168d876a8a8eca454fb27a
+    uses: actionshub/reusable-workflows/.github/workflows/publish.yaml@cb64d61d896ad264d111c6d105a8e662f5e24210
