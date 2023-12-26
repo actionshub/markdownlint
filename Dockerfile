@@ -1,4 +1,4 @@
-FROM ruby:3.2.2-slim
+FROM ruby:3.3.0-slim
 ENV MATCHERS_DIR="._actionshub_problem-matchers"
 ENV	MATCHER_FILE="${MATCHERS_DIR}/markdownlint.json"
 
